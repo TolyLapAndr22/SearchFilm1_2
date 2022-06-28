@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.topAppBar as topAppBar1
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,20 +12,38 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        button_menu.setOnClickListener {
-            Toast.makeText(this, "МЕНЮ", Toast.LENGTH_SHORT).show()
+        topAppBar1.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.settings -> {
+                    Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
         }
-        button_fav.setOnClickListener {
-            Toast.makeText(this, "ИЗБРАННОЕ", Toast.LENGTH_SHORT).show()
+
+
+        bottom_navigation.setOnNavigationItemSelectedListener {
+
+            when (it.itemId) {
+                R.id.favorites -> {
+                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.watch_later -> {
+                    Toast.makeText(this, "Посмотреть похже", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.selections -> {
+                    Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
         }
-        button_watch_later.setOnClickListener {
-            Toast.makeText(this, "ПОСМОТРЕТЬ ПОЗЖЕ", Toast.LENGTH_SHORT).show()
-        }
-        button_selections.setOnClickListener {
-            Toast.makeText(this, "ПОДБОРКИ", Toast.LENGTH_SHORT).show()
-        }
-        button_settings.setOnClickListener {
-            Toast.makeText(this, "НАСТРОЙКИ", Toast.LENGTH_SHORT).show()
-        }
+
+
+
+
     }
 }
